@@ -1,17 +1,23 @@
 package com.linsist.calculator;
 
-//TIP 要<b>运行</b>代码，请按 <shortcut actionId="Run"/> 或
-// 点击装订区域中的 <icon src="AllIcons.Actions.Execute"/> 图标。
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP 当文本光标位于高亮显示的文本处时按 <shortcut actionId="ShowIntentionActions"/>
-        // 查看 IntelliJ IDEA 建议如何修正。
-        System.out.printf("Hello and welcome!");
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入第一个数字: ");
+        int a = input.nextInt();
+        System.out.println("请输入运算符: ");
+        String operator = input.next();
+        System.out.println("请输入第二个数字: ");
+        int b = input.nextInt();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP 按 <shortcut actionId="Debug"/> 开始调试代码。我们已经设置了一个 <icon src="AllIcons.Debugger.Db_set_breakpoint"/> 断点
-            // 但您始终可以通过按 <shortcut actionId="ToggleLineBreakpoint"/> 添加更多断点。
-            System.out.println("i = " + i);
+        Calculator calc = new Calculator();
+        try {
+            int result = calc.calculate(a, b, operator);
+            System.out.println("结果是" + result);
+        } catch (ArithmeticException | IllegalArgumentException e) {
+            System.out.println("错误：" + e.getMessage());
         }
     }
 }
